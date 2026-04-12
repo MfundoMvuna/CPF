@@ -1,0 +1,15 @@
+C:\Users\Hi Fi\Desktop\CPF\src\CPF.Application\bin\Debug\net8.0\CPF.Application.deps.json
+C:\Users\Hi Fi\Desktop\CPF\src\CPF.Application\bin\Debug\net8.0\CPF.Application.dll
+C:\Users\Hi Fi\Desktop\CPF\src\CPF.Application\bin\Debug\net8.0\CPF.Application.pdb
+C:\Users\Hi Fi\Desktop\CPF\src\CPF.Application\bin\Debug\net8.0\CPF.Domain.dll
+C:\Users\Hi Fi\Desktop\CPF\src\CPF.Application\bin\Debug\net8.0\CPF.Domain.pdb
+C:\Users\Hi Fi\Desktop\CPF\src\CPF.Application\obj\Debug\net8.0\CPF.Application.csproj.AssemblyReference.cache
+C:\Users\Hi Fi\Desktop\CPF\src\CPF.Application\obj\Debug\net8.0\CPF.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Hi Fi\Desktop\CPF\src\CPF.Application\obj\Debug\net8.0\CPF.Application.AssemblyInfoInputs.cache
+C:\Users\Hi Fi\Desktop\CPF\src\CPF.Application\obj\Debug\net8.0\CPF.Application.AssemblyInfo.cs
+C:\Users\Hi Fi\Desktop\CPF\src\CPF.Application\obj\Debug\net8.0\CPF.Application.csproj.CoreCompileInputs.cache
+C:\Users\Hi Fi\Desktop\CPF\src\CPF.Application\obj\Debug\net8.0\CPF.Appl.27AA5E76.Up2Date
+C:\Users\Hi Fi\Desktop\CPF\src\CPF.Application\obj\Debug\net8.0\CPF.Application.dll
+C:\Users\Hi Fi\Desktop\CPF\src\CPF.Application\obj\Debug\net8.0\refint\CPF.Application.dll
+C:\Users\Hi Fi\Desktop\CPF\src\CPF.Application\obj\Debug\net8.0\CPF.Application.pdb
+C:\Users\Hi Fi\Desktop\CPF\src\CPF.Application\obj\Debug\net8.0\ref\CPF.Application.dll
