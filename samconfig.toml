@@ -1,0 +1,12 @@
+version = 0.1
+
+[default.deploy.parameters]
+stack_name = "cpf-api"
+resolve_s3 = true
+s3_prefix = "cpf-api"
+region = "af-south-1"
+capabilities = "CAPABILITY_IAM"
+confirm_changeset = true
+
+[default.build.parameters]
+use_container = false

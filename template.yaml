@@ -1,0 +1,87 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: CPF - Community Policing Forum API
+
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 512
+
+Parameters:
+  PostgreSQLConnection:
+    Type: String
+    Description: PostgreSQL connection string
+    NoEcho: true
+  JwtSecret:
+    Type: String
+    Description: JWT signing secret (min 32 chars)
+    NoEcho: true
+    MinLength: 32
+  YocoSecretKey:
+    Type: String
+    Description: Yoco payment secret key
+    NoEcho: true
+    Default: sk_test_placeholder
+  YocoWebhookSecret:
+    Type: String
+    Description: Yoco webhook signing secret
+    NoEcho: true
+    Default: whsec_placeholder
+  SnsTopicArn:
+    Type: String
+    Description: SNS Topic ARN for panic alert notifications
+    Default: ''
+
+Resources:
+  CpfApiFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Handler: CPF.API
+      Runtime: dotnet8
+      CodeUri: ./src/CPF.API/
+      Description: CPF API Lambda function
+      Environment:
+        Variables:
+          ASPNETCORE_ENVIRONMENT: Production
+          ConnectionStrings__PostgreSQL: !Ref PostgreSQLConnection
+          Jwt__Secret: !Ref JwtSecret
+          Jwt__Issuer: CPF-API
+          Jwt__Audience: CPF-Mobile
+          Jwt__AccessTokenExpirationMinutes: '15'
+          Jwt__RefreshTokenExpirationDays: '7'
+          Yoco__SecretKey: !Ref YocoSecretKey
+          Yoco__WebhookSecret: !Ref YocoWebhookSecret
+          Yoco__BaseUrl: https://payments.yoco.com/api
+      Policies:
+        - AWSLambdaBasicExecutionRole
+        - Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Action:
+                - sns:Publish
+              Resource: !If
+                - HasSnsTopic
+                - !Ref SnsTopicArn
+                - !Sub 'arn:aws:sns:${AWS::Region}:${AWS::AccountId}:*'
+      Events:
+        Api:
+          Type: Api
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+        RootApi:
+          Type: Api
+          Properties:
+            Path: /
+            Method: ANY
+
+Conditions:
+  HasSnsTopic: !Not [!Equals [!Ref SnsTopicArn, '']]
+
+Outputs:
+  ApiUrl:
+    Description: API Gateway URL
+    Value: !Sub 'https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/'
+  FunctionArn:
+    Description: Lambda function ARN
+    Value: !GetAtt CpfApiFunction.Arn
